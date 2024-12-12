@@ -1,0 +1,8 @@
+<!-- appointments/templates/appointments/doctor_list.html -->
+<h1>List of Doctors</h1>
+<ul>
+  {% for doctor in doctors %}
+    <li>{{ doctor.name }} - {{ doctor.specialization }}</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'book_appointment' %}">Book an Appointment</a>

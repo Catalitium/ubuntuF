@@ -1,0 +1,82 @@
+<!-- appointments/templates/appointments/book_appointment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar una cita</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<h1>Solicitar una cita</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="doctor">Selecciona tu especialista:</label>
+    <select id="doctor" name="doctor" required>
+        <option value="" disabled selected>Selecciona un especialista</option>
+        <option value="1">Dr. Pablo</option>
+        <option value="2">Dr. Begoña Barriuso</option>
+        <option value="3">Dr. Julian Barriuso</option>
+        <option value="4">Dr. Clemente Andres</option>
+        <option value="5">Dra. Mavi Jubes</option>
+        <option value="6">Dra. Maria Laura</option>
+    </select>
+
+    <!-- Step 2: Doctor Details (hidden until doctor is selected) -->
+    <div id="doctor-details" class="doctor-details">
+        <h3>Detalles del especialista <span id="toggle-details" class="toggle-details">&#x25BC;</span></h3>
+        <div id="doctor-info" class="doctor-info" style="display: none;">
+            <p id="doctor-name"></p>
+            <p id="doctor-specialty"></p>
+        </div>
+    </div>
+    <br>
+    
+    
+<!-- Submission Method Prompt -->
+<div id="submission-method-prompt" style="display: none; margin-top: 15px;">
+    <p><label for="contact_method">¿Cómo reservar?</label></p> 
+    <div style="display: flex; gap: 15px; align-items: center;">
+        <!-- WhatsApp Button -->
+        <button id="whatsapp-button" type="button" style="display: flex; align-items: center; background-color: #25D366; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;" onclick="selectMethod('whatsapp')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 20px; height: 20px; margin-right: 8px;">
+            WhatsApp
+        </button>
+        <!-- Email Button -->
+        <button id="email-button" type="button" style="display: flex; align-items: center; background-color: #007BFF; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;" onclick="selectMethod('email')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Mail_symbol.svg" alt="Email Logo" style="width: 20px; height: 20px; margin-right: 8px;">
+            Email
+        </button>
+    </div>
+</div>
+<br>
+
+<!-- Appointment Form Fields -->
+<div id="appointment-form-fields" style="display: none;">
+    <label for="patient_name">Tu Nombre:</label>
+    <input type="text" id="patient_name" name="patient_name" required><br><br>
+
+    <label for="email">Tu Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Teléfono de contacto:</label>
+    <input type="text" id="phone" name="phone" required><br><br>
+
+    <label for="date">Fecha y hora preferida:</label>
+    <input type="datetime-local" id="date" name="requested_appointment_date" required><br><br>
+
+    <label for="motive">Motivo:</label>
+    <textarea id="motive" name="motive" placeholder="Motivo de su consulta..." rows="4" cols="40"></textarea><br><br>
+
+    <!-- Hidden Field for Contact Method -->
+    <label for="contact_method" style="display: none;">Método de contacto:</label>
+    <input type="text" id="contact_method" name="contact_method" style="display: none;">
+
+    <button type="submit">Agendar tu cita</button>
+</div>
+
+
+<script src="{% static 'js/script.js' %}"> </script> 
+</body>
+</html>

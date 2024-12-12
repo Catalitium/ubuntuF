@@ -1,0 +1,19 @@
+<!-- appointments/templates/appointments/success.html -->
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de reserva</title>
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+</head>
+<body>
+    <h1>¡Gracias por programar su cita!</h1>
+    <p>Su solicitud de cita está en proceso, y le enviaremos una confirmación final. <br>
+    <strong>¡Este no es el mensaje de confirmación definitivo!</strong></p>
+    <p><strong>Razón de la cita (Motivo):</strong> {{ appointment.motive }}</p>
+    <!-- Go Back Button -->
+    <button onclick="window.history.back()">Regresar</button>
+</body>
+</html>
